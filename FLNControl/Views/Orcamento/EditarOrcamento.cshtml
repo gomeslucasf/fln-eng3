@@ -1,0 +1,116 @@
+﻿@model FLNControl.Models.Transporte
+@{
+    ViewData["Title"] = "EditarOrcamento";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+@section Scripts
+{
+    <script src="~/js/View/Orcamento/orcamento.js"></script>
+}
+
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Navbar -->
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <h1>Editar Orçamento</h1>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            @using (Html.BeginForm("EditarOrcamento", "Orcamento", FormMethod.Post))
+            {
+
+                <form>
+                    <div class="row" id="corpoformulario">
+                        <div class="col-md-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Informações</h3>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-3" >
+                                        <label for="nomeClienteForm">Cliente *</label>
+                                        <select class="form-control" name="statusSelected" >
+                                            <option selected value="@Model.cliente.First().Codigo">@Model.cliente.First().Nome</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label for="dataNascForm">Data Vencimento *</label>
+                                        <input type="date" id="dataVencimento" name="dataVencimento" class="form-control required" value="@(Model.orcamento.Data_Validade.ToString("yyyy-MM-dd"))">
+                                    </div>
+                                    @*<div class="col-4">
+                                        <label for="searchProd">Pesquisar Produto *</label>
+                                        <input class="form-control" id="searchProd" type="text" placeholder="Nome">
+
+                                    </div>
+                                    <div class="col-2">
+                                        <div class=" mt-2">
+                                            <label for="searchProd"></label>
+                                            <div class="btn btn-default form-control " onclick="buscarProdutos()"><i class="fas fa-search"></i></div>
+                                        </div>
+                                    </div>*@
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 form-group custom-control custom-checkbox">
+                                        <label>Produtos</label>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    @foreach (var produto in Model.produto)
+                                                    {
+                                                        <tr>
+                                                            <td><input type="text" readonly name="listProdutos" value="@produto.Descricao" /></td>
+                                                            <td name="tdValor"><input readonly type="text" name="valorVenda" value="@produto.ValorVenda" /></td>
+                                                            <td><input type="number" style="float-right" name="quantidadeProdutos" id="@string.Concat("quant",@produto.Id)" onchange="alterarValorTotal()" value="@produto.quantidade" min="0" /></td>
+                                                            <input type="hidden" name="listIdsProdutos" value="@produto.Id" />
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td class="text-center" colspan="2">Total</td>
+                                                        <td class="text-center">R$ <label id="lbTotal">0.00</label></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="hidden" name="idOrcamento" value="@Model.orcamento.Id" />
+                            <input type="submit" value="Editar Orcamento" class="btn btn-outline-primary float-right" onclick="return confereInputs()">
+                        </div>
+                    </div>
+                </form>
+            }
+            <p>&nbsp;</p>
+            <p id="validate_message">&nbsp;</p>
+            <p>&nbsp;</p>
+            <!-- /.content -->
+        </div>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+</body>

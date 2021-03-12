@@ -1,0 +1,107 @@
+@{
+    ViewData["TituloPagina"] = "Consultar Produtos";
+    ViewData["ClasseBody"] = "hold-transition register-page";
+    Layout = "_LayoutDashboard";
+}
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Consultar Produtos</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form" id="f-consultar">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="i-termo-busca">Termo de Busca</label>
+                        <input type="text" class="form-control" id="i-termo-busca" placeholder="Insira o termo de busca">
+                    </div>
+                    <span>Buscar por: </span>
+                    <div class="custom-control custom-radio" style="display:inline-block; margin-left: 10px; cursor:pointer;">
+                        <input class="custom-control-input rd-tipo-termo" type="radio" id="rd-name" name="rd-tipo-termo" checked value="nome">
+                        <label for="rd-name" class="custom-control-label">Nome</label>
+                    </div>
+                    <div class="custom-control custom-radio" style="display:inline-block; margin-left: 10px; cursor:pointer;">
+                        <input class="custom-control-input rd-tipo-termo" type="radio" id="rd-categ" name="rd-tipo-termo" value="cpf">
+                        <label for="rd-categ" class="custom-control-label">CPF</label>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-default" onclick="FLNVenda.inicio()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="FLNVenda.limpar('f-consultar')">Limpar</button>
+                    <button type="button" class="btn btn-success float-right" onclick="FLNVenda.consultar()">Consultar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="rowResultado" style="display:none;">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Resultado da Pesquisa</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="resultadoBusca" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Valor</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Valor</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles
+{
+      <link rel="stylesheet" href="~/adminlte3/plugins/toastr/toastr.min.css">
+      <link rel="stylesheet" href="~/adminlte3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+      <link rel="stylesheet" href="~/adminlte3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+}
+
+@section Scripts
+{
+    <script type="module" src="~/flncontrol/js/Venda.js"></script>
+    <script src="~/adminlte3/plugins/toastr/toastr.min.js"></script>
+    <script src="~/adminlte3/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/adminlte3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/adminlte3/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/adminlte3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#resultadoBusca').on('click', 'tbody tr', function () {
+            let id = $(this).find("td:first").html();
+            window.location.href = "/Venda/Visualizar/"+id;
+        });
+
+        $('input[type=radio][name=rd-tipo-termo]').change(function () {
+            if (this.value == 'all') {
+                $("#i-termo-busca").prop('disabled', true);
+            }
+            else {
+                $("#i-termo-busca").prop('disabled', false);
+            }
+        });
+
+        $('#f-consultar').on('reset', function (e) {
+            $("#i-termo-busca").prop('disabled', false);
+        });
+    });
+    </script>
+}
