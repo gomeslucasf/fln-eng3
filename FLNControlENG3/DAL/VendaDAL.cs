@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
+using System.Threading.Tasks;
 using engenharia.DAL;
 using engenharia.DAL.EstoqueDAL;
 using engenharia.DAL.ProdutoDAL;
 using FLNControl.Models;
+using FLNControlENG3.DAL;
 using MySql.Data.MySqlClient;
 
 namespace FLNControl.DAL
@@ -13,10 +16,10 @@ namespace FLNControl.DAL
     {
         public int gravarVenda(CarrinhoCompra carrinho)
         {
-            MySqlPersistence database = new MySqlPersistence();
+            MySqlPersistence database = MySqlPersistence.construir();
             database.Abrir();
-            MySqlTransaction transaction = database.conexao.BeginTransaction();
-            database.cmd.Transaction = transaction;
+            MySqlTransaction transaction = database.getConexao().BeginTransaction();
+            database.getCmd().Transaction = transaction;
             int vendaid = 0;
 
             try
@@ -38,7 +41,7 @@ namespace FLNControl.DAL
                 parameters.Add("@pCliUF", carrinho.Uf);
                 database.ExecuteNonQuery(sql, parameters);
 
-                vendaid = database.UltimoID;
+                vendaid = database.getUltimoId();
                 decimal total = 0;
 
                 foreach (var p in carrinho.ListaProdutos)
@@ -109,7 +112,7 @@ namespace FLNControl.DAL
         public List<Object> findByName(string name)
         {
             List<Object> lista = new List<Object>();
-            MySqlPersistence database = new MySqlPersistence();
+            MySqlPersistence database = MySqlPersistence.construir();
             string sql = @"SELECT * FROM venda WHERE ven_cli_nome LIKE @pCliNome LIMIT 1";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -138,7 +141,7 @@ namespace FLNControl.DAL
         public List<Object> find(int id)
         {
             List<Object> lista = new List<Object>();
-            MySqlPersistence database = new MySqlPersistence();
+            MySqlPersistence database = MySqlPersistence.construir();
             string sql = @"SELECT * FROM venda WHERE ven_codigo = @pVenCodigo LIMIT 1";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>();
