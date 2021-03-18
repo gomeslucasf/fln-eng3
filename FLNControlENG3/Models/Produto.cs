@@ -1,60 +1,86 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace FLNControl.Models
 {
     public class Produto
     {
-        private int _id;
-        private string _categoria;
-        private string _descricao;
-        private string _marca;
-        private decimal _valor_venda;
-        private decimal _valor_compra;
-        private Cliente _cliente;
-        private int _quantidade;
-        private int _orcamentoId;
+        private int id;
+        private string gtin;
+        private decimal precoCompra;
+        private int estoqueMinimo;
+        private UnidadeMedida unidadeMedida;
+        private ProdutoLote[] produtoLote;
 
-        public Cliente cliente { get; set; }
-
-        public int quantidade { get; set; }
-        public int orcamentoId { get; set; }
-        public int Id
+        public Produto()
         {
-            get => _id;
-            set => _id = value;
         }
 
-        public string Categoria
+        public Produto(int id, string gtin, decimal precoCompra, int estoqueMinimo, UnidadeMedida unidadeMedida, ProdutoLote[] produtoLote)
         {
-            get => _categoria;
-            set => _categoria = value;
+            this.id = id;
+            this.gtin = gtin;
+            this.precoCompra = precoCompra;
+            this.estoqueMinimo = estoqueMinimo;
+            this.unidadeMedida = unidadeMedida;
+            this.produtoLote = produtoLote;
         }
 
-        public string Descricao
+        public int getId()
         {
-            get => _descricao;
-            set => _descricao = value;
+            return id;
         }
 
-        public string Marca
+        public void setId(int id)
         {
-            get => _marca;
-            set => _marca = value;
+            this.id = id;
         }
 
-        public decimal ValorVenda
+        public string getGtin()
         {
-            get => _valor_venda;
-            set => _valor_venda = value;
+            return gtin;
         }
 
-        public decimal ValorCompra
+        public void setGtin(string gtin)
         {
-            get => _valor_compra;
-            set => _valor_compra = value;
+            this.gtin = gtin;
+        }
+
+        public decimal getPrecoCompra()
+        {
+            return precoCompra;
+        }
+
+        public void setPrecoCompra(decimal precoCompra)
+        {
+            this.precoCompra = precoCompra;
+        }
+
+        public int getEstoqueMinimo()
+        {
+            return estoqueMinimo;
+        }
+
+        public void setEstoqueMinimo(int estoqueMinimo)
+        {
+            this.estoqueMinimo = estoqueMinimo;
+        }
+
+        public UnidadeMedida getUnidadeMedida()
+        {
+            return unidadeMedida;
+        }
+
+        public void setUnidadeMedida(UnidadeMedida unidadeMedida)
+        {
+            this.unidadeMedida = unidadeMedida;
+        }
+
+        public ProdutoLote[] getProdutoLote()
+        {
+            return produtoLote;
+        }
+
+        public void setProdutoLote(ProdutoLote[] produtoLote)
+        {
+            this.produtoLote = produtoLote;
         }
     }
 }

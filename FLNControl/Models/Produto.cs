@@ -14,7 +14,7 @@ namespace FLNControl.Models
         private decimal _valor_venda;
         private decimal _valor_compra;
         private Cliente _cliente;
-        private int _quantidade;
+        private int _quantidade;    
         private int _orcamentoId;
 
         public Cliente cliente { get; set; }
