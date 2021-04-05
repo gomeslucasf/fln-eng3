@@ -1,12 +1,11 @@
-﻿/*
-using engenharia.DAL;
-using FLNControl.Models;
+﻿using FLNControlENG3.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using FLNControlENG3.DAL;
+using FLNControlENG3.DAL.ClienteDAL;
 
-namespace engenharia.DAL.ProdutoDAL
+namespace FLNControlENG3.Models
 {
     public class ProdutoDAL
     {
@@ -14,7 +13,7 @@ namespace engenharia.DAL.ProdutoDAL
         {
             Produto produto = null;
             MySqlPersistence database = MySqlPersistence.construir();
-            string sql = @"SELECT * FROM produto WHERE pro_codigo = @pProdId LIMIT 1";
+            string sql = @"SELECT id_prod, nome_prod FROM produto WHERE id_prod = @pProdId LIMIT 1";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@pProdId", id);
@@ -22,15 +21,12 @@ namespace engenharia.DAL.ProdutoDAL
             DbDataReader result = database.ExecuteSelect(sql, parameters);
             if (result.HasRows)
             {
-                produto = new Produto();
                 result.Read();
 
-                produto.Id = Convert.ToInt32(result["pro_codigo"]);
-                produto.Descricao = result["pro_descricao"].ToString();
-                produto.Categoria = result["pro_categoria"].ToString();
-                produto.Marca = result["pro_marca"].ToString();
-                produto.ValorVenda = Convert.ToDecimal(result["pro_valor_venda"]);
-                produto.ValorCompra = Convert.ToDecimal(result["pro_valor_compra"]);
+                produto = new Produto(
+                    Convert.ToInt32(result["id_prod"]),
+                    result["nome_prod"].ToString()
+                );
             }
 
             database.Close();
@@ -38,125 +34,30 @@ namespace engenharia.DAL.ProdutoDAL
             return produto;
         }
 
-        public List<Produto> findByDescription(string desc)
+        private List<Observador> findObservers(int id)
         {
             MySqlPersistence database = MySqlPersistence.construir();
-            string sql = @"SELECT * FROM produto WHERE LOWER(pro_descricao) LIKE @pProdDesc";
-
+            string sql = @"SELECT idCliente FROM clientobservaproduto WHERE idProduto = @pProdId LIMIT 1";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@pProdDesc", "%" + desc.ToLower() + "%");
+            parameters.Add("@pProdId", id);
+
+            ClienteDAL clienteDAL = new ClienteDAL();
 
             DbDataReader result = database.ExecuteSelect(sql, parameters);
-            List<Produto> listaProduto = new List<Produto>();
-            if (result.HasRows)
+            List<Observador> observadores = new List<Observador>();
+            if(result.HasRows)
             {
-                Produto produto;
-                while (result.Read())
+                Cliente cliente;
+                while(result.Read())
                 {
-                    produto = new Produto();
-                    produto.Id = Convert.ToInt32(result["pro_codigo"]);
-                    produto.Descricao = result["pro_descricao"].ToString();
-                    produto.Categoria = result["pro_categoria"].ToString();
-                    produto.Marca = result["pro_marca"].ToString();
-                    produto.ValorVenda = Convert.ToDecimal(result["pro_valor_venda"]);
-                    produto.ValorCompra = Convert.ToDecimal(result["pro_valor_compra"]);
-                    listaProduto.Add(produto);
+                    cliente = clienteDAL.find(Convert.ToInt32(result["idCliente"]));
+                    observadores.Add(cliente);
                 }
             }
 
             database.Close();
 
-            return listaProduto;
-        }
-
-        public List<Produto> findByCategory(string categ)
-        {
-            MySqlPersistence database = MySqlPersistence.construir();
-            string sql = @"SELECT * FROM produto WHERE LOWER(pro_categoria) LIKE @pProdCateg";
-
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@pProdCateg", "%" + categ.ToLower() + "%");
-
-            DbDataReader result = database.ExecuteSelect(sql, parameters);
-            List<Produto> listaProduto = new List<Produto>();
-            if (result.HasRows)
-            {
-                Produto produto;
-                while (result.Read())
-                {
-                    produto = new Produto();
-                    produto.Id = Convert.ToInt32(result["pro_codigo"]);
-                    produto.Descricao = result["pro_descricao"].ToString();
-                    produto.Categoria = result["pro_categoria"].ToString();
-                    produto.Marca = result["pro_marca"].ToString();
-                    produto.ValorVenda = Convert.ToDecimal(result["pro_valor_venda"]);
-                    produto.ValorCompra = Convert.ToDecimal(result["pro_valor_compra"]);
-                    listaProduto.Add(produto);
-                }
-            }
-
-            database.Close();
-
-            return listaProduto;
-        }
-
-        public List<Produto> findAll()
-        {
-            MySqlPersistence database = MySqlPersistence.construir();
-            string sql = @"SELECT * FROM produto";
-
-            DbDataReader result = database.ExecuteSelect(sql);
-            List<Produto> listaProduto = new List<Produto>();
-            if (result.HasRows)
-            {
-                Produto produto;
-                while (result.Read())
-                {
-                    produto = new Produto();
-                    produto.Id = Convert.ToInt32(result["pro_codigo"]);
-                    produto.Descricao = result["pro_descricao"].ToString();
-                    produto.Categoria = result["pro_categoria"].ToString();
-                    produto.Marca = result["pro_marca"].ToString();
-                    produto.ValorVenda = Convert.ToDecimal(result["pro_valor_venda"]);
-                    produto.ValorCompra = Convert.ToDecimal(result["pro_valor_compra"]);
-                    listaProduto.Add(produto);
-                }
-            }
-
-            database.Close();
-
-            return listaProduto;
-        }
-
-        public List<Produto> findByBrand(string brand)
-        {
-            MySqlPersistence database = MySqlPersistence.construir();
-            string sql = @"SELECT * FROM produto WHERE LOWER(pro_marca) LIKE @pProdBrand";
-
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@pProdBrand", "%" + brand.ToLower() + "%");
-
-            DbDataReader result = database.ExecuteSelect(sql, parameters);
-            List<Produto> listaProduto = new List<Produto>();
-            if (result.HasRows)
-            {
-                Produto produto;
-                while (result.Read())
-                {
-                    produto = new Produto();
-                    produto.Id = Convert.ToInt32(result["pro_codigo"]);
-                    produto.Descricao = result["pro_descricao"].ToString();
-                    produto.Categoria = result["pro_categoria"].ToString();
-                    produto.Marca = result["pro_marca"].ToString();
-                    produto.ValorVenda = Convert.ToDecimal(result["pro_valor_venda"]);
-                    produto.ValorCompra = Convert.ToDecimal(result["pro_valor_compra"]);
-                    listaProduto.Add(produto);
-                }
-            }
-
-            database.Close();
-
-            return listaProduto;
+            return observadores;
         }
 
         public int save(Produto produto)
@@ -164,46 +65,48 @@ namespace engenharia.DAL.ProdutoDAL
             MySqlPersistence database = MySqlPersistence.construir();
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             string sql;
-            if (produto.Id == 0)
+            if (produto.getId() > 0)
             {
-                sql = @"INSERT INTO 
-                    produto(pro_descricao, pro_categoria, pro_marca, 
-                        pro_valor_compra, pro_valor_venda)
-                    VALUES(@pProdDescricao, @pProdCategoria, @pProdMarca,
-                        @pProdValorCompra, @pProdValorVenda
-                    )";
+                sql = @"UPDATE 
+                    produto SET nome_prod = @pProdNome, 
+                    WHERE id_prod = @pProdId";
+                parameters.Add("@pProdId", produto.getId());
             }
             else
             {
-                sql = @"UPDATE 
-                    produto SET pro_descricao = @pProdDescricao, 
-                        pro_categoria = @pProdCategoria, 
-                        pro_marca = @pProdMarca, 
-                        pro_valor_compra = @pProdValorCompra,
-                        pro_valor_venda = @pProdValorVenda
-                    WHERE pro_codigo = @pProdId";
-                parameters.Add("@pProdId", produto.Id);
+                sql = @"INSERT INTO 
+                    produto(nome_prod)
+                        VALUES(@pProdCategoria)";
             }
 
-            parameters.Add("@pProdDescricao", produto.Descricao);
-            parameters.Add("@pProdCategoria", produto.Categoria);
-            parameters.Add("@pProdMarca", produto.Marca);
-            parameters.Add("@pProdValorCompra", produto.ValorCompra);
-            parameters.Add("@pProdValorVenda", produto.ValorVenda);
+            parameters.Add("@pProdNome", produto.getNome());
             database.ExecuteNonQuery(sql, parameters);
 
-            return database.getUltimoId();
+            int id = database.getUltimoId();
+
+            saveObservers(id, produto.getObservadores());
+
+            return id;
         }
 
-        public int delete(int id)
+        public void saveObservers(int id, List<Observador> observadores)
         {
             MySqlPersistence database = MySqlPersistence.construir();
+            string sql = @"DELETE FROM clientobservaproduto WHERE idProduto = @pProdId";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            string sql = @"DELETE FROM produto WHERE pro_codigo = @pProdId";
             parameters.Add("@pProdId", id);
+            database.ExecuteNonQuery(sql, parameters);
 
-            return database.ExecuteNonQuery(sql, parameters);
+            sql = @"INSERT INTO clientobservaproduto (idProduto, idCliente) VALUES";
+
+            string sep = "";
+            foreach(Cliente c in observadores)
+            {
+                sql += sep + "(" + id + "," + c.getId() + ")";
+                sep = ",";
+            }
+
+            database.ExecuteNonQuery(sql, parameters);
         }
     }
 }
-*/

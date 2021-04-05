@@ -1,26 +1,30 @@
-namespace FLNControl.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FLNControlENG3.Models
 {
-    public class Produto
+    public class Produto : Sujeito
     {
         private int id;
-        private string gtin;
-        private decimal precoCompra;
-        private int estoqueMinimo;
-        private UnidadeMedida unidadeMedida;
-        private ProdutoLote[] produtoLote;
+        private string nome;
+        // Lucas vai implementar o restante do codigo do produto
 
-        public Produto()
-        {
-        }
+        private List<Observador> observadores;
 
-        public Produto(int id, string gtin, decimal precoCompra, int estoqueMinimo, UnidadeMedida unidadeMedida, ProdutoLote[] produtoLote)
+        public Produto(int id, string nome, List<Observador> observadores)
         {
             this.id = id;
-            this.gtin = gtin;
-            this.precoCompra = precoCompra;
-            this.estoqueMinimo = estoqueMinimo;
-            this.unidadeMedida = unidadeMedida;
-            this.produtoLote = produtoLote;
+            this.nome = nome;
+            this.observadores = observadores;
+        }
+
+        public Produto(int id, string nome)
+        {
+            this.id = id;
+            this.nome = nome;
         }
 
         public int getId()
@@ -33,54 +37,50 @@ namespace FLNControl.Models
             this.id = id;
         }
 
-        public string getGtin()
+        public string getNome()
         {
-            return gtin;
+            return this.nome;
         }
 
-        public void setGtin(string gtin)
+        public void setNome(string nome)
         {
-            this.gtin = gtin;
+            this.nome = nome;
         }
 
-        public decimal getPrecoCompra()
+        public List<Observador> getObservadores()
         {
-            return precoCompra;
+            return this.observadores;
         }
 
-        public void setPrecoCompra(decimal precoCompra)
+        public void setObservadores(List<Observador> observadores)
         {
-            this.precoCompra = precoCompra;
+            this.observadores = observadores;
         }
 
-        public int getEstoqueMinimo()
+        public void inserirEstoque(int qtd)
         {
-            return estoqueMinimo;
+            // Logica de estoque/lote (LUCAS)
+
+            notificar("Atualização de estoque: "+ qtd +" novas unidades do produto "+ this.nome);
         }
 
-        public void setEstoqueMinimo(int estoqueMinimo)
+        public void adicionarObservador(Observador o)
         {
-            this.estoqueMinimo = estoqueMinimo;
+            observadores.Add(o);
         }
 
-        public UnidadeMedida getUnidadeMedida()
+        public void notificar(string acao)
         {
-            return unidadeMedida;
+            foreach (Observador o in observadores)
+            {
+                o.atualizar(acao);
+                removerObservador(o);
+            }
         }
 
-        public void setUnidadeMedida(UnidadeMedida unidadeMedida)
+        public void removerObservador(Observador o)
         {
-            this.unidadeMedida = unidadeMedida;
-        }
-
-        public ProdutoLote[] getProdutoLote()
-        {
-            return produtoLote;
-        }
-
-        public void setProdutoLote(ProdutoLote[] produtoLote)
-        {
-            this.produtoLote = produtoLote;
+            observadores.Remove(o);
         }
     }
 }

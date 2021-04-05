@@ -1,105 +1,95 @@
-﻿using FLNControl.DAL.ClienteDAL;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FLNControl.Models
+namespace FLNControlENG3.Models
 {
-    public class Cliente
+    public class Cliente : Observador
     {
-        int codigo;
-        string nome;
-        string cpf;
-        string telefone;
-        string email;
-        string dataNascimento;
-        int fiado;
-        double valorLimiteFiado;
-        int diasVencimento;
-        int parcelasLimiteFiado;
+        private int id;
+        private string nome;
+        private string endereco;
+        private string cpf;
+        private string telefone;
+        private DateTime dataNascimento;
 
-        public int Codigo { get => codigo; set => codigo = value; }
-        public string Nome { get => nome; set => nome = value; }
-        public string Cpf { get => cpf; set => cpf = value; }
-        public string Telefone { get => telefone; set => telefone = value; }
-        public string Email { get => email; set => email = value; }
-        public string DataNascimento { get => dataNascimento; set => dataNascimento = value; }
-        public int Fiado { get => fiado; set => fiado = value; }
-        public double ValorLimiteFiado { get => valorLimiteFiado; set => valorLimiteFiado = value; }
-        public int DiasVencimento { get => diasVencimento; set => diasVencimento = value; }
-        public int ParcelasLimiteFiado { get => parcelasLimiteFiado; set => parcelasLimiteFiado = value; }
-
-        public Cliente(int codigo, string nome, string cpf, string telefone, 
-            string email, string dataNascimento, int fiado, double valorLimiteFiado, 
-            int diasVencimento, int parcelasLimiteFiado)
+        public Cliente(int id, string nome, string endereco, string cpf, string telefone, DateTime dataNascimento)
         {
-            this.codigo = codigo;
+            this.id = id;
             this.nome = nome;
+            this.endereco = endereco;
             this.cpf = cpf;
             this.telefone = telefone;
-            this.email = email;
             this.dataNascimento = dataNascimento;
-            this.fiado = fiado;
-            this.valorLimiteFiado = valorLimiteFiado;
-            this.diasVencimento = diasVencimento;
-            this.parcelasLimiteFiado = parcelasLimiteFiado;
         }
-        public Cliente(string nome, string cpf, string telefone, string email, 
-            string dataNascimento, int fiado , double valorLimiteFiado , 
-            int diasVencimento , int parcelasLimiteFiado )
+
+        public int getId()
         {
-            this.codigo = 0;
+            return id;
+        }
+
+        public void setId(int id)
+        {
+            this.id = id;
+        }
+
+        public string getNome()
+        {
+            return nome;
+        }
+
+        public void setNome(string nome)
+        {
             this.nome = nome;
-            this.cpf = cpf;
+        }
+
+        public string getEndereco()
+        {
+            return endereco;
+        }
+
+        public void setEndereco(string endereco)
+        {
+            this.endereco = endereco;
+        }
+
+        public string getCPF()
+        {
+            return cpf;
+        }
+
+        public void setCPF(string CPF)
+        {
+            this.cpf = CPF;
+        }
+
+        public string getTelefone()
+        {
+            return telefone;
+        }
+
+        public void setTelefone(string telefone)
+        {
             this.telefone = telefone;
-            this.email = email;
+        }
+
+        public DateTime getDataNascimento()
+        {
+            return dataNascimento;
+        }
+
+        public void setDataNascimento(DateTime dataNascimento)
+        {
             this.dataNascimento = dataNascimento;
-            this.fiado = fiado;
-            this.valorLimiteFiado = valorLimiteFiado;
-            this.diasVencimento = diasVencimento;
-            this.parcelasLimiteFiado = parcelasLimiteFiado;
-        }
-        public Cliente()
-        {
         }
 
-        public List<Cliente> ListarTodosCliente() {
-            ClienteDAL dal = new ClienteDAL();
-            return dal.ListarTodosCliente();
-        }
-        public List<Cliente> ListarClientesPorNome(string nome)
+        public void atualizar(string acao)
         {
-            ClienteDAL dal = new ClienteDAL();
-            return dal.ListarClientesPorNome(nome);
-        }
-        public List<Cliente> ListarClientesPorCPF(string cpf)
-        {
-            ClienteDAL dal = new ClienteDAL();
-            return dal.ListarClientesPorCPF(cpf);
-        }
-        public List<Cliente> ListarClientesPorTelefone(string telefone)
-        {
-            ClienteDAL dal = new ClienteDAL();
-            return dal.ListarClientesPorTelefone(telefone);
-        }
-        public Cliente BuscarClientesPorCodigo(int codigo)
-        {
-            ClienteDAL dal = new ClienteDAL();
-            return dal.BuscarClientesPorCodigo(codigo);
-        }
+            Console.WriteLine("Cliente "+ this.nome +" notificado!\n"+ acao);
 
-        public bool GravarClienteCompleto()
-        {
-            ClienteDAL dal = new ClienteDAL();
-            return dal.GravarClienteCompleto(this);
-        }
-        public bool ExcluirCliente(int codigo)
-        {
-            ClienteDAL dal = new ClienteDAL();
-            return dal.ExcluirCliente(codigo);
-        }  
-        public bool AlterarClienteCompleto()
-        {
-            ClienteDAL dal = new ClienteDAL();
-            return dal.AlterarClienteCompleto(this);
+            // Código de notificação para o cliente
         }
     }
 }

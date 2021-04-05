@@ -931,7 +931,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ferii\\.nuget\\packages\\": {}
+    "C:\\Users\\feriip3d\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -939,11 +939,11 @@
       "projectUniqueName": "C:\\dev\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
       "projectName": "FLNControlENG3",
       "projectPath": "C:\\dev\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
-      "packagesPath": "C:\\Users\\ferii\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\feriip3d\\.nuget\\packages\\",
       "outputPath": "C:\\dev\\fln-eng3\\FLNControlENG3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ferii\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\feriip3d\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
