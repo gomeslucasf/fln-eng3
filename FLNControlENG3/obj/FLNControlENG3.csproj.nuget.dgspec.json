@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj": {}
+    "C:\\dev\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj": {
+    "C:\\dev\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
+        "projectUniqueName": "C:\\dev\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
         "projectName": "FLNControlENG3",
-        "projectPath": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
-        "packagesPath": "C:\\Users\\Gomes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControlENG3\\obj\\",
+        "projectPath": "C:\\dev\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
+        "packagesPath": "C:\\Users\\feriip3d\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\fln-eng3\\FLNControlENG3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Gomes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\feriip3d\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,7 +25,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net50": {
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -36,7 +37,8 @@
         }
       },
       "frameworks": {
-        "net50": {
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "MySql.Data": {
               "target": "Package",
@@ -47,12 +49,22 @@
               "version": "[12.0.3, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win7-x86": {
-          "#import": []
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

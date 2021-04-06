@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControl\\FLNControl.csproj": {}
+    "C:\\dev\\fln-eng3\\FLNControl\\FLNControl.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControl\\FLNControl.csproj": {
+    "C:\\dev\\fln-eng3\\FLNControl\\FLNControl.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControl\\FLNControl.csproj",
+        "projectUniqueName": "C:\\dev\\fln-eng3\\FLNControl\\FLNControl.csproj",
         "projectName": "FLNControl",
-        "projectPath": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControl\\FLNControl.csproj",
-        "packagesPath": "C:\\Users\\Gomes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\ES2_EntregaFinal_FLNControl\\fln-eng3\\FLNControl\\obj\\",
+        "projectPath": "C:\\dev\\fln-eng3\\FLNControl\\FLNControl.csproj",
+        "packagesPath": "C:\\Users\\feriip3d\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\fln-eng3\\FLNControl\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Gomes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\feriip3d\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
@@ -77,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

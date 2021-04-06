@@ -72,7 +72,7 @@ namespace FLNControlENG3.DAL
             }
 
             int qtdLinhasAfetadas = cmd.ExecuteNonQuery();
-            UltimoID = (int)cmd.LastInsertedId;
+            this.ultimoID = (int)cmd.LastInsertedId;
 
             Close();
             return qtdLinhasAfetadas;

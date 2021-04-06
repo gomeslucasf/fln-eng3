@@ -1,155 +1,112 @@
-﻿using System;
+﻿using FLNControlENG3.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using FLNControl.Models;
-using FLNControlENG3.DAL;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FLNControl.DAL.ClienteDAL
+namespace FLNControlENG3.DAL.ClienteDAL
 {
-    public class ClienteDAL
+    class ClienteDAL
     {
-        MySqlPersistence bd = MySqlPersistence.construir();
-
-        public List<Cliente> Mapeamento(DbDataReader dr)
+        public Cliente find(int id)
         {
-            List<Cliente> clientes = new List<Cliente>();
+            Cliente cliente = null;
 
-            while (dr.Read())
+            MySqlPersistence conexao = MySqlPersistence.construir();
+            string sql = @"SELECT id, nome, endereco, cpf, telefone, dataNascimento 
+                    FROM clientes WHERE id = @pClienteId LIMIT 1";
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@pClienteId", id);
+
+            DbDataReader result = conexao.ExecuteSelect(sql, parameters);
+            if (result.HasRows)
             {
-                Cliente cliente = new Cliente();
-                cliente.Codigo = Convert.ToInt32(dr["cli_codigo"].ToString());
-                cliente.Nome = dr["cli_nome"].ToString();
-                cliente.Cpf = dr["cli_cpf"].ToString();
-                cliente.Telefone = dr["cli_telefone"].ToString();
-                cliente.Email = dr["cli_email"].ToString();
-                cliente.DataNascimento = dr["cli_data_nascimento"].ToString();
-                cliente.Fiado = Convert.ToInt32(dr["cli_fiado"].ToString());
-                cliente.ValorLimiteFiado = Convert.ToDouble(dr["cli_valor_limite_fiado"].ToString());
-                cliente.DiasVencimento = Convert.ToInt32(dr["cli_data_vencimento"].ToString());
+                result.Read();
 
-                clientes.Add(cliente);
+                cliente = new Cliente(
+                    Convert.ToInt32(result["id"]),
+                    result["nome"].ToString(),
+                    result["endereco"].ToString(),
+                    result["cpf"].ToString(),
+                    result["telefone"].ToString(),
+                    Convert.ToDateTime(result["dataNascimento"])
+                );
             }
-            bd.Close();
 
-            return clientes;
-        }
-        public List<Cliente> ListarTodosCliente()
-        {
-            
-            string sql = "select * from cliente";
-
-            return this.Mapeamento(bd.ExecuteSelect(sql));
-        }
-        public List<Cliente> ListarClientesPorNome(string nome)
-        {
-            string sql = "select * from cliente where cli_nome like '"+nome+"%'";
-
-            return this.Mapeamento(bd.ExecuteSelect(sql));
-        }
-        public List<Cliente> ListarClientesPorCPF(string cpf)
-        {
-            string sql = "select * from cliente where cli_cpf like '" + cpf +"%'";
-
-            return this.Mapeamento(bd.ExecuteSelect(sql));
-        }
-        public List<Cliente> ListarClientesPorTelefone(string telefone)
-        {
-            string sql = "select * from cliente where cli_telefone like '" + telefone + "%'";
-
-            return this.Mapeamento(bd.ExecuteSelect(sql));
-        }
-        public Cliente BuscarClientesPorCodigo(int codigo)
-        {
-            string sql = "select * from cliente where cli_codigo like '" + codigo + "'%";
-
-            DbDataReader dr = bd.ExecuteSelect(sql);
-
-            Cliente cliente = new Cliente();
-            cliente.Codigo = Convert.ToInt32(dr["cli_codigo"].ToString());
-            cliente.Nome = dr["cli_nome"].ToString();
-            cliente.Cpf = dr["cli_cpf"].ToString();
-            cliente.Telefone = dr["cli_telefone"].ToString();
-            cliente.Email = dr["cli_email"].ToString();
-            cliente.DataNascimento = dr["cli_data_nascimento"].ToString();
-            cliente.Fiado = Convert.ToInt32(dr["cli_fiado"].ToString());
-            cliente.ValorLimiteFiado = Convert.ToDouble(dr["cli_valor_limite_fiado"].ToString());
-            cliente.DiasVencimento = Convert.ToInt32(dr["cli_data_vencimento"].ToString());
-
+            conexao.Close();
             return cliente;
         }
-        public bool GravarClienteCompleto(Cliente novo)
+
+        public List<Cliente> findByNome(string nome)
         {
-            MySqlPersistence bd = MySqlPersistence.construir();
+            MySqlPersistence conexao = MySqlPersistence.construir();
+            string sql = @"SELECT id, nome, endereco, cpf, telefone, dataNascimento 
+                    FROM clientes WHERE LOWER(nome) = @pClienteNome ORDER BY id";
 
-            string sql = @"INSERT INTO cliente
-                                        (cli_nome,
-                                        cli_cpf,
-                                        cli_telefone,
-                                        cli_email,
-                                        cli_data_nascimento,
-                                        cli_fiado,
-                                        cli_valor_limite_fiado,
-                                        cli_data_vencimento)
-                                        VALUES
-                                        (@nome,
-                                        @cpf,
-                                        @telefone,
-                                        @email,
-                                        @dataNascimento,
-                                        @Fiado,
-                                        @valorLimiteFiado,
-                                        @dataVencimento)";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@pClienteNome", "LOWER(%"+nome+"%)");
 
-            Dictionary<string, object> parameter = new Dictionary<string, object>();
-            parameter.Add("@nome", novo.Nome);
-            parameter.Add("@cpf", novo.Cpf);
-            parameter.Add("@telefone", novo.Telefone);
-            parameter.Add("@email", novo.Email);
-            parameter.Add("@dataNascimento", novo.DataNascimento);
-            parameter.Add("@Fiado", novo.Fiado);
-            parameter.Add("@valorLimiteFiado", novo.ValorLimiteFiado);
-            parameter.Add("@dataVencimento", novo.DiasVencimento);
+            List<Cliente> clientes = new List<Cliente>();
+            DbDataReader result = conexao.ExecuteSelect(sql, parameters);
+            if (result.HasRows)
+            {
+                Cliente cliente;
+                while (result.Read())
+                {
+                    cliente = new Cliente(
+                        Convert.ToInt32(result["id"]),
+                        result["nome"].ToString(),
+                        result["endereco"].ToString(),
+                        result["cpf"].ToString(),
+                        result["telefone"].ToString(),
+                        Convert.ToDateTime(result["dataNascimento"])
+                    );
+                }
+            }
 
-            bd.ExecuteNonQuery(sql, parameter);
-
-            novo.Codigo = bd.getUltimoId();
-
-            return novo.Codigo == 0;
+            conexao.Close();
+            return clientes;
         }
-        public bool ExcluirCliente(int codigo)
+
+        public int save(Cliente cliente)
         {
-            string sql = "delete cliente where cli_codigo" + codigo;
+            MySqlPersistence database = MySqlPersistence.construir();
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            string sql;
 
-            return (bd.ExecuteNonQuery(sql) > 0);
+            if (cliente.getId() > 0)
+            {
+                sql = @"UPDATE 
+                    clientes SET  
+                        nome = @pClienteNome, 
+                        endereco = @pClienteEndereco, 
+                        cpf = @pClienteCPF,
+                        telefone = @pClienteTelefone,
+                        dataNascimento = @pClienteNascimento
+                    WHERE id = @pClienteId";
+                parameters.Add("@pClienteId", cliente.getId());
+            }
+            else
+            {
+                sql = @"INSERT INTO 
+                    cliente(nome, endereco, cpf, 
+                        telefone, dataNascimento)
+                    VALUES(@pClienteNome, @pClienteEndereco, @pClienteCPF,
+                        @pClienteTelefone, @pClienteNascimento
+                    )";
+            }
 
-        }
-        public bool AlterarClienteCompleto(Cliente novo)
-        {
-            MySqlPersistence bd = MySqlPersistence.construir();
+            parameters.Add("@pClienteNome", cliente.getNome());
+            parameters.Add("@pClienteEndereco", cliente.getEndereco());
+            parameters.Add("@pClienteCPF", cliente.getCPF());
+            parameters.Add("@pClienteTelefone", cliente.getTelefone());
+            parameters.Add("@pClienteNascimento", cliente.getDataNascimento());
+            database.ExecuteNonQuery(sql, parameters);
 
-            string sql = @"UPDATE cliente SET
-                                        cli_nome = @nome,
-                                        cli_cpf = @cpf,
-                                        cli_telefone = @telefone,
-                                        cli_email = @email,
-                                        cli_data_nascimento = @dataNascimento,
-                                        cli_fiado = @Fiado,
-                                        cli_valor_limite_fiado = @valorLimiteFiado,
-                                        cli_data_vencimento = @dataVencimento
-                                        WHERE cli_codigo = @codigo";
-
-            Dictionary<string, object> parameter = new Dictionary<string, object>();
-            parameter.Add("@codigo", novo.Codigo);
-            parameter.Add("@nome", novo.Nome);
-            parameter.Add("@cpf", novo.Cpf);
-            parameter.Add("@telefone", novo.Telefone);
-            parameter.Add("@email", novo.Email);
-            parameter.Add("@dataNascimento", novo.DataNascimento);
-            parameter.Add("@Fiado", novo.Fiado);
-            parameter.Add("@valorLimiteFiado", novo.ValorLimiteFiado);
-            parameter.Add("@dataVencimento", novo.DataNascimento);
-
-            return bd.ExecuteNonQuery(sql, parameter) != 0;
+            return database.getUltimoId();
         }
     }
 }
