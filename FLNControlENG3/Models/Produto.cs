@@ -10,6 +10,9 @@ namespace FLNControlENG3.Models
     {
         private int id;
         private string nome;
+        private Cor cor;
+        private Marca marca;
+        private Segmento segmento;
         // Lucas vai implementar o restante do codigo do produto
 
         private List<Observador> observadores;
@@ -55,6 +58,36 @@ namespace FLNControlENG3.Models
         public void setObservadores(List<Observador> observadores)
         {
             this.observadores = observadores;
+        }
+
+        public int getMarca()
+        {
+            return marca;
+        }
+
+        public void setMarca(Marca marca)
+        {
+            this.marca = marca;
+        }
+
+        public int getCor()
+        {
+            return cor;
+        }
+
+        public void setCor(Cor cor)
+        {
+            this.cor = cor;
+        }
+
+        public int getSegmento()
+        {
+            return segmento;
+        }
+
+        public void setSegmento(Segmento segmento)
+        {
+            this.segmento = segmento;
         }
 
         public void inserirEstoque(int qtd)
