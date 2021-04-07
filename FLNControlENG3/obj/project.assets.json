@@ -632,19 +632,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\natha\\.nuget\\packages\\": {}
+    "C:\\Users\\Gomes\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\natha\\Source\\Repos\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
+      "projectUniqueName": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
       "projectName": "FLNControlENG3",
-      "projectPath": "C:\\Users\\natha\\Source\\Repos\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
-      "packagesPath": "C:\\Users\\natha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\natha\\Source\\Repos\\fln-eng3\\FLNControlENG3\\obj\\",
+      "projectPath": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\fln-eng3\\FLNControlENG3\\FLNControlENG3.csproj",
+      "packagesPath": "C:\\Users\\Gomes\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\fln-eng3\\FLNControlENG3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\natha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gomes\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -677,7 +677,7 @@
             "version": "[12.0.3, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
