@@ -29,7 +29,7 @@ namespace FLNControlENG3.Models
                 );
             }
 
-            database.Close();
+            Close();
 
             return produto;
         }

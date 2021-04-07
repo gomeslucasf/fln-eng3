@@ -1,7 +1,8 @@
 public class UnidadeMedida
 {
 	private int id;
-	private string descricao;
+	private string tipo;
+    private float metragem;
 
     public UnidadeMedida()
     {
@@ -32,5 +33,30 @@ public class UnidadeMedida
     {
         this.descricao = descricao;
     }
+
+    public float getMetragem()
+    {
+        return this.metragem;
+    }
+
+    public void setMetragem(float metragem)
+    {
+        this.metragem = metragem;
+    }
+
+    public bool gravarUnidadeMedida() {
+        UnidadeMedidaDAL dal = new UnidadeMedidaDAL();
+        return dal.gravarUnidadeMedida();
+    }
+    public List<UnidadeMedida> retornaTodas()
+    {
+        UnidadeMedidaDAL dal = new UnidadeMedidaDAL();
+        return dal.retornaTodas();
+    }
+    public UnidadeMedida pesquisaPorCodigo(int id) {
+        UnidadeMedidaDAL dal = new UnidadeMedidaDAL();
+        return dal.pesquisarPorCodigo(id);
+    }
+
 }
 

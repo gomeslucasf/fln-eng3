@@ -37,3 +37,4 @@ C:\dev\fln-eng3\FLNControlENG3\obj\Debug\net5.0\FLNControlENG3.dll
 C:\dev\fln-eng3\FLNControlENG3\obj\Debug\net5.0\ref\FLNControlENG3.dll
 C:\dev\fln-eng3\FLNControlENG3\obj\Debug\net5.0\FLNControlENG3.pdb
 C:\dev\fln-eng3\FLNControlENG3\obj\Debug\net5.0\FLNControlENG3.genruntimeconfig.cache
+C:\Users\Gomes\Desktop\faculdade\Eng3\fln-eng3\FLNControlENG3\obj\Debug\net5.0\FLNControlENG3.pdb
