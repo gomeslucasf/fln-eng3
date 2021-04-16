@@ -105,7 +105,6 @@ namespace FLNControlENG3.DAL
             Abrir();
             cmd = new MySqlCommand(select, conexao);
 
-            int aux = 0;
             if (parameter != null)
             {
                 foreach (var p in parameter)
