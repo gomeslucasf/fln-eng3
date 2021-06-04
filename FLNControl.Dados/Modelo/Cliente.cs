@@ -10,6 +10,7 @@ namespace FLNControl.Dados.Modelo
         private string _endereco;
         private string _cpf;
         private string _telefone;
+        private ITipoCliente _tipoCliente;
         private DateTime _dataNascimento;
 
         public Cliente(int id, string nome, string endereco, string cpf, string telefone, DateTime dataNascimento)
@@ -82,9 +83,38 @@ namespace FLNControl.Dados.Modelo
             _dataNascimento = dataNascimento;
         }
 
-        public void Atualizar()
+        public void Atualizar(string acao)
         {
             // Código de notificação para o cliente
         }
+
+        #region Implementação do State
+        public void VerificarFidelidade()
+        {
+            Venda v = new Venda();
+            
+            // O Cliente se torna um cliente fidelizado ao realizar 3 compras
+            if(v.VendasPorCliente(_cpf).Count >= 3)
+            {
+                _tipoCliente = new ClienteFidelizado();
+            }
+        }
+
+        public double ObterDesconto(double valor)
+        {
+            // O cliente recebe descontos melhores se o estado dele for de cliente fidelizado
+            VerificarFidelidade();
+
+            return _tipoCliente.ObterDescontoAVista(valor);
+        }
+
+        public double ObterDesconto(double valor, int parcelas)
+        {
+            // O cliente recebe descontos melhores se o estado dele for de cliente fidelizado
+            VerificarFidelidade();
+
+            return _tipoCliente.ObterDescontoAPrazo(valor, parcelas);
+        }
+        #endregion
     }
 }

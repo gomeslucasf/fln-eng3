@@ -1,4 +1,5 @@
 ﻿using FLNControl.Dados.Modelo.Interface;
+using FLNControl.Dados.Persistencia;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace FLNControl.Dados.Modelo
         // Lucas vai implementar o restante do codigo do produto
 
         private List<IObservador> observadores;
+
+        public Produto()
+        {
+
+        }
 
         public Produto(int id, string nome, List<IObservador> observadores)
         {
@@ -115,6 +121,55 @@ namespace FLNControl.Dados.Modelo
         public void removerObservador(IObservador o)
         {
             observadores.Remove(o);
+        }
+
+        public int Salvar()
+        {
+            ProdutoDAO pDao = new ProdutoDAO();
+
+            return pDao.Save(this);
+        }
+
+        public IEnumerable<Produto> BuscarProdutosPorDescricao(string descricao)
+        {
+            ProdutoDAO pDao = new ProdutoDAO();
+
+            return pDao.FindByDescription(descricao);
+        }
+
+        public IEnumerable<Produto> BuscarProdutosPorMarca(string marca)
+        {
+            ProdutoDAO pDao = new ProdutoDAO();
+
+            return pDao.FindByBrand(marca);
+        }
+
+        public IEnumerable<Produto> BuscarProdutosPorCategoria(string categoria)
+        {
+            ProdutoDAO pDao = new ProdutoDAO();
+
+            return pDao.FindByCategory(categoria);
+        }
+
+        public Produto BuscarProdutosPorId(int id)
+        {
+            ProdutoDAO pDao = new ProdutoDAO();
+
+            return pDao.Find(id);
+        }
+
+        public IEnumerable<Produto> ListarTodos()
+        {
+            ProdutoDAO pDao = new ProdutoDAO();
+
+            return pDao.FindAll();
+        }
+
+        public bool Deletar()
+        {
+            ProdutoDAO p = new ProdutoDAO();
+
+            return p.Delete(id) > 0;
         }
     }
 }

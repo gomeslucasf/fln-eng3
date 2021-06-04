@@ -22,7 +22,7 @@ namespace FLNControl.Dados.Persistencia
                 produto = new Produto();
                 result.Read();
 
-                produto.Id = Convert.ToInt32(result["pro_codigo"]);
+                produto.setId = Convert.ToInt32(result["pro_codigo"]);
                 produto.Descricao = result["pro_descricao"].ToString();
                 produto.Categoria = result["pro_categoria"].ToString();
                 produto.Marca = result["pro_marca"].ToString();

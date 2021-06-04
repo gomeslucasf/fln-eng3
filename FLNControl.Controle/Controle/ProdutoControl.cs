@@ -24,28 +24,26 @@ namespace FLNControl.Fachada.Controle
 
         public int InserirProduto(Produto p)
         {
-            ProdutoDAO pDao = new ProdutoDAO();
-
-            return pDao.Save(p);
+            return p.Salvar();
         }
 
         public IEnumerable<Produto> BuscarProduto(string termo, string tipoBusca)
         {
-            ProdutoDAO pDao = new ProdutoDAO();
-            List<Produto> lp = null;
+            Produto p = new Produto();
+            IEnumerable<Produto> lp = null;
 
             switch(tipoBusca)
             {
                 case "desc":
-                    lp = pDao.FindByDescription(termo);
+                    lp = p.BuscarProdutosPorDescricao(termo);
                     break;
 
                 case "marca":
-                    lp = pDao.FindByBrand(termo);
+                    lp = p.BuscarProdutosPorMarca(termo);
                     break;
 
                 case "categ":
-                    lp = pDao.FindByCategory(termo);
+                    lp = p.BuscarProdutosPorCategoria(termo);
                     break;
             }
 
@@ -54,23 +52,21 @@ namespace FLNControl.Fachada.Controle
 
         public Produto BuscarProduto(int id)
         {
-            ProdutoDAO pDao = new ProdutoDAO();
+            Produto p = new Produto();
 
-            return pDao.Find(id);
+            return p.BuscarProdutosPorId(id);
         }
 
-        public List<Produto> ListarProdutos()
+        public IEnumerable<Produto> ListarProdutos()
         {
-            ProdutoDAO pDao = new ProdutoDAO();
+            Produto p = new Produto();
 
-            return pDao.FindAll();
+            return p.ListarTodos();
         }
 
-        public bool DeletarProduto(int id)
+        public bool DeletarProduto(Produto p)
         {
-            ProdutoDAO pDao = new ProdutoDAO();
-
-            return pDao.Delete(id) > 0;
+            return p.Deletar();
         }
     }
 }
