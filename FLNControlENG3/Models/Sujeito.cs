@@ -10,6 +10,6 @@ namespace FLNControlENG3.Models
     {
         void adicionarObservador(Observador o);
         void removerObservador(Observador o);
-        void notificar(string acao);
+        void notificar();
     }
 }

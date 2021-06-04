@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLNControlENG3.Models
+namespace FLNControl.Dados.Modelo
 {
-    public class Cor
+    public class Segmento
     {
         private int id;
-        private string nome;
+        private string descricao;
 
-        public Cor()
+        public Segmento()
         {
         }
 
-        public Cor(int id, string nome)
+        public Segmento(int id, string descricao)
         {
             this.id = id;
-            this.nome = nome;
+            this.descricao = descricao;
         }
 
         public int getId()
@@ -31,14 +31,14 @@ namespace FLNControlENG3.Models
             this.id = id;
         }
 
-        public string getNome()
+        public string getDescricao()
         {
-            return nome;
+            return descricao;
         }
 
-        public void setNome(string nome)
+        public void setDescricao(string descricao)
         {
-            this.nome = nome;
+            this.descricao = descricao;
         }
     }
 }

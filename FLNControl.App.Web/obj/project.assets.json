@@ -926,20 +926,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\felipe\\.nuget\\packages\\": {}
+    "C:\\Users\\Felipe\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dev\\FLNControl\\FLNControl.App.Web\\FLNControl.App.Web.csproj",
+      "projectUniqueName": "c:\\dev\\fln-eng3\\FLNControl.App.Web\\FLNControl.App.Web.csproj",
       "projectName": "FLNControl.App.Web",
-      "projectPath": "C:\\dev\\FLNControl\\FLNControl.App.Web\\FLNControl.App.Web.csproj",
-      "packagesPath": "C:\\Users\\felipe\\.nuget\\packages\\",
-      "outputPath": "C:\\dev\\FLNControl\\FLNControl.App.Web\\obj\\",
+      "projectPath": "c:\\dev\\fln-eng3\\FLNControl.App.Web\\FLNControl.App.Web.csproj",
+      "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
+      "outputPath": "c:\\dev\\fln-eng3\\FLNControl.App.Web\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -952,8 +957,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\dev\\FLNControl\\FLNControl.Controle\\FLNControl.Fachada.csproj": {
-              "projectPath": "C:\\dev\\FLNControl\\FLNControl.Controle\\FLNControl.Fachada.csproj"
+            "c:\\dev\\fln-eng3\\FLNControl.Controle\\FLNControl.Fachada.csproj": {
+              "projectPath": "c:\\dev\\fln-eng3\\FLNControl.Controle\\FLNControl.Fachada.csproj"
             }
           }
         }
@@ -985,7 +990,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

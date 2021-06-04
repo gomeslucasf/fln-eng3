@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLNControlENG3.Models
+namespace FLNControl.Dados.Modelo
 {
-    public class Cor
+    public class Marca
     {
         private int id;
         private string nome;
 
-        public Cor()
+        public Marca()
         {
         }
 
-        public Cor(int id, string nome)
+        public Marca(int id, string nome)
         {
             this.id = id;
             this.nome = nome;

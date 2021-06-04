@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controle\" />
     <Folder Include="Controle\Template\" />
   </ItemGroup>
 

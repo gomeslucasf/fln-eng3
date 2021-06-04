@@ -2,6 +2,6 @@
 {
     public interface IObservador
     {
-        void Atualizar();
+        void Atualizar(string acao);
     }
 }
