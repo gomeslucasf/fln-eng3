@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FLNControlENG3.Models
 {
-    class Segmento
+    public class Segmento
     {
         private int id;
         private string descricao;

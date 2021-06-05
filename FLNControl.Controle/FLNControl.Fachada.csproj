@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Controle\Template\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FLNControl.Dados\FLNControl.Dados.csproj" />
+  </ItemGroup>
+
 </Project>

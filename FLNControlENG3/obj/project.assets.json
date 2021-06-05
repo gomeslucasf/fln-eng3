@@ -931,20 +931,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\felipe\\.nuget\\packages\\": {}
+    "C:\\Users\\Felipe\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dev\\FLNControl\\FLNControlENG3\\O_FLNControlENG3.csproj",
+      "projectUniqueName": "C:\\dev\\fln-eng3\\FLNControlENG3\\O_FLNControlENG3.csproj",
       "projectName": "O_FLNControlENG3",
-      "projectPath": "C:\\dev\\FLNControl\\FLNControlENG3\\O_FLNControlENG3.csproj",
-      "packagesPath": "C:\\Users\\felipe\\.nuget\\packages\\",
-      "outputPath": "C:\\dev\\FLNControl\\FLNControlENG3\\obj\\",
+      "projectPath": "C:\\dev\\fln-eng3\\FLNControlENG3\\O_FLNControlENG3.csproj",
+      "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
+      "outputPath": "C:\\dev\\fln-eng3\\FLNControlENG3\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -993,7 +998,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

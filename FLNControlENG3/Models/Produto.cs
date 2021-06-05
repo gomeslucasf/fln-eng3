@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -60,7 +60,7 @@ namespace FLNControlENG3.Models
             this.observadores = observadores;
         }
 
-        public int getMarca()
+        public Marca getMarca()
         {
             return marca;
         }
@@ -70,7 +70,7 @@ namespace FLNControlENG3.Models
             this.marca = marca;
         }
 
-        public int getCor()
+        public Cor getCor()
         {
             return cor;
         }
@@ -80,7 +80,7 @@ namespace FLNControlENG3.Models
             this.cor = cor;
         }
 
-        public int getSegmento()
+        public Segmento getSegmento()
         {
             return segmento;
         }
@@ -94,7 +94,7 @@ namespace FLNControlENG3.Models
         {
             // Logica de estoque/lote (LUCAS)
 
-            notificar("Atualização de estoque: "+ qtd +" novas unidades do produto "+ this.nome);
+            notificar();
         }
 
         public void adicionarObservador(Observador o)
@@ -102,11 +102,11 @@ namespace FLNControlENG3.Models
             observadores.Add(o);
         }
 
-        public void notificar(string acao)
+        public void notificar()
         {
             foreach (Observador o in observadores)
             {
-                o.atualizar(acao);
+                o.atualizar("Atualização de estoque");
                 removerObservador(o);
             }
         }
@@ -117,4 +117,3 @@ namespace FLNControlENG3.Models
         }
     }
 }
-*/

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FLNControlENG3.Models
 {
-    class Marca
+    public class Marca
     {
         private int id;
         private string nome;

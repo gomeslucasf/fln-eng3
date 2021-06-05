@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FLNControlENG3.Models
+namespace FLNControl.Dados.Modelo
 {
     public class Cor
     {
