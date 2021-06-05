@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\FLNControl\\FLNControl.Dados\\FLNControl.Dados.csproj": {}
+    "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\fln-eng3\\FLNControl.Dados\\FLNControl.Dados.csproj": {}
   },
   "projects": {
-    "C:\\dev\\FLNControl\\FLNControl.Dados\\FLNControl.Dados.csproj": {
+    "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\fln-eng3\\FLNControl.Dados\\FLNControl.Dados.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\FLNControl\\FLNControl.Dados\\FLNControl.Dados.csproj",
+        "projectUniqueName": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\fln-eng3\\FLNControl.Dados\\FLNControl.Dados.csproj",
         "projectName": "FLNControl.Dados",
-        "projectPath": "C:\\dev\\FLNControl\\FLNControl.Dados\\FLNControl.Dados.csproj",
-        "packagesPath": "C:\\Users\\felipe\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\FLNControl\\FLNControl.Dados\\obj\\",
+        "projectPath": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\fln-eng3\\FLNControl.Dados\\FLNControl.Dados.csproj",
+        "packagesPath": "C:\\Users\\Gomes\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gomes\\Desktop\\faculdade\\Eng3\\fln-eng3\\FLNControl.Dados\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Gomes\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,13 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "MySql.Data": {
-              "target": "Package",
-              "version": "[8.0.23, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -60,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
